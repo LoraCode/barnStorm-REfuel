@@ -1,0 +1,172 @@
+@font-face { font-family: Blox2; src: url('../Blox2.ttf'); }
+
+* {
+    margin: 0;
+}
+/* TITLE PAGE */
+#titleBackground {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../Images/levelTwo.gif');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#opacity {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(35, 35, 35, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#titleContainer {
+    height: 50%;
+    width: 60%;
+    /* background-color: white; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#titleBackground h1 {
+    font-family: Blox2;
+    font-size: 72pt;
+    margin-bottom: 75px;
+    color: black;
+}
+
+#instructions {
+    height: 50%;
+    width: 50%;
+    background-color: rgba(35, 35, 35, 1);
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    font-family: Blox2, sans-serif;
+}
+
+.row {
+    background-color: lightblue;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.row img {
+    height: 50px;
+    width: 100px;
+}
+
+.rowReverse {
+    background-color: lightcoral;
+    flex: 1;
+}
+
+#btnDiv {
+    height: 50px;
+    width: 400px;
+    /* background-color: lightslategray; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+    font-family: Blox2;
+    font-size: 16pt;
+    background-color: rgba(35, 35, 35, 0.6);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+
+
+/* GAME PAGE */
+#testContainer {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../Images/levelTwo.gif');
+    background-size: cover;
+    /* background-position-y: -110px; */
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+}
+
+#clockTimer {
+    height: 20px;
+    width: 80px;
+    background-color: black;
+}
+
+#clockTimer span {
+    font-size: 16pt;
+    color: white;
+}
+
+.bombs {
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    background-image: url('../Images/bomb.gif');
+    background-size: cover;
+    position: absolute;
+    transform: rotate()
+}
+
+#fuel {
+    height: 50px;
+    width: 50px;
+    background-color: green;
+    position: absolute;
+}
+
+#fuelTank {
+    height: 20px;
+    width: 150px;
+    border: solid 5px white;
+}
+
+#fuelAmount {
+    height: 20px;
+    width: 0;
+    background-color: green;
+}
+
+#playerField {
+    height: 100%;
+    width: 50px;
+    /* background-color: lightgray; */
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    position: relative;
+}
+
+#player {
+    height: 50px;
+    width: 90px;
+    /* background-color: aqua; */
+    position: absolute;
+    background-image: url('../Images/player.gif');
+    background-size: cover;
+}
+
+#explosion {
+    display: none;
+}
