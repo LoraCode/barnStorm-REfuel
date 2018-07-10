@@ -290,8 +290,9 @@ function bomb3CheckCollision() {
 
 function bombCollisionDetected() {
     // Another example
-    if (bomb1Check === true || bomb2Check === true || bomb3Check === true) {
+    if (this.bomb1Check === true || this.bomb2Check === true || this.bomb3Check === true) {
         playerDeath.style.display = 'block';
+        gameOver.style.display = 'flex';
         gameOver.style.zIndex = 1;
     }
 }
@@ -300,7 +301,7 @@ function bombCollisionDetected() {
 const win = document.querySelector('#winDiv');
 const gameOver = document.querySelector('#gameOverDiv');
 let secHolder = document.querySelector('#seconds');
-let secs = 60;
+let secs = 50;
 
 function countDownTimer() {
     secs -= 1;
@@ -308,29 +309,32 @@ function countDownTimer() {
     if (secs < 10) {
         secs = `0${secs}`;
     }
-    if (secs === 59) {
+    if (secs === 49) {
         fallingFuel();
         fallingBomb1();
     }
-    if (secs === 45) {
+    if (secs === 40) {
         fallingBomb2();
     }
     if (secs === 25) {
         fallingBomb3();
     }
     if (secs == 0) {
+        gameOver.style.display = 'flex';
         gameOver.style.zIndex = 1;
+        clearInterval(this.counter);
     }
 
     secHolder.innerHTML = secs;
 }
 
-setInterval(countDownTimer, 1000);
+this.counter = setInterval(countDownTimer, 1000);
 
 // CHECK FOR WIN
 
 function checkForWin() {
     if (fuelAmount.style.width === 200 + 'px') {
+        win.style.display = 'flex';
         win.style.zIndex = 1;
     }
 }
