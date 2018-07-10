@@ -39,15 +39,20 @@ function moveUp() {
 
 // EVENT LISTENER TO INIT PLAYER MOVEMENT
 
+let arrayMoveDown = new Array;
+let arrayMoveUp = new Array;
+
 window.addEventListener('keydown', (evt) => {
     const code = evt.code;
     switch (code) {
         case 'ArrowDown':
             moveDown();
+            arrayMoveDown.push(moverDown);
             break;
 
         case 'ArrowUp':
             moveUp();
+            arrayMoveUp.push(moverUp);
             break;
     }
 });
@@ -57,11 +62,19 @@ window.addEventListener('keyup', (e) => {
 
     switch (code) {
         case 'ArrowDown':
-        clearInterval(moverDown);
+
+            for (let i = 0; i < arrayMoveDown.length; i += 1) {
+                clearInterval(arrayMoveDown[i]);
+            }
+
         break;
 
         case 'ArrowUp':
-        clearInterval(moverUp);
+
+            for (let n = 0; n < arrayMoveUp.length; n += 1) {
+                clearInterval(arrayMoveUp[n]);
+            }
+        
         break;
     }
 });
