@@ -6,3 +6,31 @@ I'm a fan of using gifs and manipulating them in creating illusions within my co
 
 # Screenshot
 ![alt text](https://github.com/LoraCode/barnStorm-REfuel/blob/master/Images/Screen%20Shot.png "Game Page")
+
+# Features
+Gifs, replay value, and creativity.
+
+# Tech/framework used
+HTML
+CSS
+JAVASCRIPT
+
+# Code Example
+let arrayMoveDown = new Array;
+
+window.addEventListener('keydown', (evt) => {
+    const code = evt.code;
+    switch (code) {
+        case 'ArrowDown':
+            moveDown();
+            arrayMoveDown.push(moverDown);
+            break;
+            
+window.addEventListener('keyup', (e) => {
+    const code = e.code;
+    switch (code) {
+        case 'ArrowDown':
+            for (let i = 0; i < arrayMoveDown.length; i += 1) {
+                clearInterval(arrayMoveDown[i]);
+            }
+            break;
