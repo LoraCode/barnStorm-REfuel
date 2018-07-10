@@ -3,7 +3,9 @@
 * {
     margin: 0;
 }
+
 /* TITLE PAGE */
+
 #titleBackground {
     height: 100vh;
     width: 100vw;
@@ -27,38 +29,57 @@
 #titleContainer {
     height: 50%;
     width: 60%;
-    /* background-color: white; */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #titleBackground h1 {
-    font-family: Blox2;
+    font-family: Blox2, sans-serif;
     font-size: 72pt;
-    margin-bottom: 75px;
+    margin-bottom: 50px;
     color: black;
+    animation: title ease-in-out 2s infinite;
+}
+
+@keyframes title {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(0, -25px);
+        text-shadow: 10px 10px 20px rgba(235, 235, 235, 0.3);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 #instructions {
-    height: 50%;
-    width: 50%;
-    background-color: rgba(35, 35, 35, 1);
+    height: 60%;
+    width: 60%;
+    background-color: rgba(35, 35, 35, 0.7);
     position: absolute;
     z-index: -1;
     display: flex;
     flex-direction: column;
+    border-radius: 10%;
 }
 
-p {
+#instructions p {
     font-family: Blox2, sans-serif;
+    font-size: 14pt;
 }
 
 .row {
-    background-color: lightblue;
     flex: 1;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .row img {
@@ -67,14 +88,17 @@ p {
 }
 
 .rowReverse {
-    background-color: lightcoral;
     flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #btnDiv {
     height: 50px;
     width: 400px;
-    /* background-color: lightslategray; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -84,24 +108,26 @@ p {
 button {
     height: 50px;
     width: 150px;
-    font-family: Blox2;
+    font-family: Blox2, sans-serif;
     font-size: 16pt;
     background-color: rgba(35, 35, 35, 0.6);
+    border-radius: 10%;
 }
 
 button:hover {
     cursor: pointer;
+    transition: 2s;
+    background-color: rgba(235, 235, 235, 0.3);
 }
 
 
-
 /* GAME PAGE */
+
 #testContainer {
     height: 100vh;
     width: 100vw;
     background-image: url('../Images/levelTwo.gif');
     background-size: cover;
-    /* background-position-y: -110px; */
     display: flex;
     flex-direction: row;
     position: relative;
@@ -109,41 +135,60 @@ button:hover {
 }
 
 #clockTimer {
-    height: 20px;
+    border: solid 2px rgba(235, 235, 235, 1);
+    border-radius: 10%;
+    height: 25px;
     width: 80px;
-    background-color: black;
+    background-color: rgba(35, 35, 35, 0.4);
+    margin-left: 25%;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
 }
 
 #clockTimer span {
     font-size: 16pt;
-    color: white;
+    color: rgba(235, 235, 235, 1);
+    font-family: Blox2, sans-serif;
 }
 
 .bombs {
-    height: 50px;
-    width: 50px;
-    background-color: red;
-    background-image: url('../Images/bomb.gif');
+    height: 30px;
+    width: 75px;
+    background-image: url('../Images/bomb.png');
     background-size: cover;
     position: absolute;
-    transform: rotate()
+    display: flex;
 }
 
 #fuel {
-    height: 50px;
-    width: 50px;
-    background-color: green;
+    height: 55px;
+    width: 25px;
+    background-image: url('../Images/fuel.png');
+    background-size: cover;
     position: absolute;
 }
 
 #fuelTank {
-    height: 20px;
-    width: 150px;
-    border: solid 5px white;
+    height: 25px;
+    width: 200px;
+    border: solid 2px rgba(235, 235, 235, 1);;
+    background-color: rgba(35, 35, 35, 0.4);
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    margin-left: 25%;
+    margin-top: 25px;
+}
+
+#fuelTank span {
+    position: absolute;
+    font-family: Blox2, sans-serif;
+    font-size: 25px;
 }
 
 #fuelAmount {
-    height: 20px;
+    height: 25px;
     width: 0;
     background-color: green;
 }
@@ -151,17 +196,14 @@ button:hover {
 #playerField {
     height: 100%;
     width: 50px;
-    /* background-color: lightgray; */
     display: flex;
     align-items: center;
-    margin-left: 25px;
     position: relative;
 }
 
 #player {
     height: 50px;
     width: 90px;
-    /* background-color: aqua; */
     position: absolute;
     background-image: url('../Images/player.gif');
     background-size: cover;
@@ -170,3 +212,50 @@ button:hover {
 #explosion {
     display: none;
 }
+
+#gameCondition {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: -4;
+}
+
+#winDiv {
+    height: 60%;
+    width: 60%;
+    background-color: rgba(35, 35, 35, 0.8);
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: -3;
+}
+
+#winDiv h1 {
+    font-family: Blox2;
+    font-size: 72pt;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    animation: title ease-in-out 2s infinite;
+}
+
+#winDivBtns {
+    height: 50px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+}
+
+/* #gameOverDiv{
+    height: 60%;
+    width: 60%;
+    background-color: rgba(35, 35, 35, 1);
+    position: absolute;
+    z-index: -5;
+} */

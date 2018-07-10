@@ -1,10 +1,12 @@
+//GAME PAGE
+
 const player = document.querySelector('#player');
 const playerDeath = document.querySelector('#explosion');
 const bomb1 = document.querySelector('#bomb1');
 const bomb2 = document.querySelector('#bomb2');
+const bomb3 = document.querySelector('#bomb3');
 const fuel = document.querySelector('#fuel');
 const fuelAmount = document.querySelector('#fuelAmount');
-const container = document.querySelector('#testContainer');
 
 // PLAYER MOVEMENT
 
@@ -37,10 +39,42 @@ function moveUp() {
     }
 }
 
+function moveRight() {
+    let posLeft = player.getBoundingClientRect().left;
+    this.moverRight = setInterval(move, 5);
+
+    function move() {
+        if (posLeft === 1250) { // doesn't work full screen 
+            clearInterval(moverRight);
+        } else {
+            posLeft += 1;
+            player.style.left = posLeft + 'px';
+        }
+    }
+}
+
+function moveLeft() {
+    let posLeft = player.getBoundingClientRect().left;
+    this.moverLeft = setInterval(move, 5);
+
+    function move() {
+        if (posLeft === 0) { // doesn't work full screen 
+            clearInterval(moverLeft);
+        } else {
+            posLeft -= 1;
+            player.style.left = posLeft + 'px';
+        }
+    }
+}
+
+
 // EVENT LISTENER TO INIT PLAYER MOVEMENT
 
+// Empty array to store all the times functinos are being called 
 let arrayMoveDown = new Array;
 let arrayMoveUp = new Array;
+let arrayMoveRight = new Array;
+let arrayMoveLeft = new Array;
 
 window.addEventListener('keydown', (evt) => {
     const code = evt.code;
@@ -53,6 +87,16 @@ window.addEventListener('keydown', (evt) => {
         case 'ArrowUp':
             moveUp();
             arrayMoveUp.push(moverUp);
+            break;
+
+        case 'ArrowRight':
+            moveRight();
+            arrayMoveRight.push(moverRight);
+            break;
+
+        case 'ArrowLeft':
+            moveLeft();
+            arrayMoveLeft.push(moverLeft);
             break;
     }
 });
@@ -76,28 +120,24 @@ window.addEventListener('keyup', (e) => {
             }
         
         break;
+
+        case 'ArrowRight':
+
+            for (let x = 0; x < arrayMoveRight.length; x += 1) {
+                clearInterval(arrayMoveRight[x]);
+            }
+        
+            break;
+        
+        case 'ArrowLeft':
+            
+            for (let y = 0; y < arrayMoveLeft.length; y += 1) {
+                clearInterval(arrayMoveLeft[y]);
+            }
+
+            break;
     }
 });
-
-// let lastEvent;
-// const heldKeys = {};
-
-// window.onkeydown = function(event) {
-//     if (lastEvent && lastEvent.keyCode == event.keyCode) {
-//         return;
-//     }
-//     lastEvent = event;
-//     heldKeys[event.keyCode] = true;
-//     if (heldKeys === true && lastEvent.keyCode === 38) {
-//         moveUp();
-//     }
-// };
-
-// window.onkeyup = function(event) {
-//     lastEvent = null;
-//     delete heldKeys[event.keyCode];
-    
-// };
 
 // FUEL & BOMB MOVEMENT
 
@@ -113,7 +153,7 @@ function fallingFuel() {
             fallingFuel();
         }
         else {
-            posLeft -= 1;
+            posLeft -= 2;
 
             fuel.style.left = posLeft + 'px';
             fuel.style.top = posTop + 'px';
@@ -124,8 +164,6 @@ function fallingFuel() {
         
     }
 }
-
-fallingFuel();
 
 function fallingBomb1() {
     let posLeft1 = 1600;
@@ -152,8 +190,6 @@ function fallingBomb1() {
     }
 }
 
-fallingBomb1();
-
 function fallingBomb2() {
     let posLeft2 = 1600;
     let posTop2 = Math.floor(Math.random() * 660);
@@ -179,21 +215,29 @@ function fallingBomb2() {
     }
 }
 
-fallingBomb2();
+function fallingBomb3() {
+    let posLeft3 = 1600;
+    let posTop3 = Math.floor(Math.random() * 660);
 
-// ADDED MOVEMENT
+    this.bombFall3 = setInterval(fallingB3, 10);
 
-let i = 0; 
-let fuelTop = fuel.getBoundingClientRect().top
+    function fallingB3() {
 
-function upAndDown() {
+        if (posLeft3 === -50) {
+            clearInterval(this.bombFall3);
+            fallingBomb3();
+        }
+        else {
+            posLeft3 -= 10;
 
-    while (i < 100) {
+            bomb3.style.left = posLeft3 + 'px';
+            bomb3.style.top = posTop3 + 'px';
 
-        fuelTop = `${i}px`;
-
+            this.bomb3Check = bomb3CheckCollision();
+            bombCollisionDetected();
+        }
+        
     }
-    i += 1;
 }
 
 // COLLISION DETECTION
@@ -257,9 +301,23 @@ function bomb2CheckCollision() {
     return true;
 }
 
+function bomb3CheckCollision() {
+
+    if (player.getBoundingClientRect().top > bomb3.getBoundingClientRect().bottom ||
+    player.getBoundingClientRect().right < bomb3.getBoundingClientRect().left ||
+    player.getBoundingClientRect().bottom < bomb3.getBoundingClientRect().top ||
+    player.getBoundingClientRect().left > bomb3.getBoundingClientRect().right) {
+
+        return false;
+
+    }
+    return true;
+}
+
 function bombCollisionDetected() {
-    if (bomb1Check === true || bomb2Check === true) {
+    if (bomb1Check === true || bomb2Check === true || bomb3Check === true) {
         playerDeath.style.display = 'block';
+        alert('you lose');
     }
 }
 
@@ -267,7 +325,6 @@ function bombCollisionDetected() {
 
 let minHolder = document.querySelector('#minutes');
 let secHolder = document.querySelector('#seconds');
-let mins = 1
 let secs = 60;
 
 function countDownTimer() {
@@ -276,20 +333,34 @@ function countDownTimer() {
     if (secs < 10) {
         secs = `0${secs}`;
     }
-    if (secs == 0 && mins === 0) {
-        alert('Game Over');
+    if (secs === 59) {
+        fallingFuel();
+        fallingBomb1();
+    }
+    if (secs === 45) {
+        fallingBomb2();
+    }
+    if (secs === 25) {
+        fallingBomb3();
     }
     if (secs == 0) {
-        secs = 59;
-        mins = 0;
+        alert('Game Over');
     }
 
-    minHolder.innerHTML = mins;
-    secHolder.innerHTML = ': ' + secs;
+    secHolder.innerHTML = secs;
 }
 
 setInterval(countDownTimer, 1000);
 
+// CHECK FOR WIN
+
+function checkForWin() {
+    if (fuelAmount.style.width === 200 + 'px') {
+        alert('you win');
+    }
+}
+
+setInterval(checkForWin, 1000);
 // MODAL INSTRUCTIONS & GAME OVER
 
 // MUSIC

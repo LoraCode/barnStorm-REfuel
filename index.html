@@ -3,54 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Title Screen</title>
+    <title>barnSTORM:REfuel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="CSS/main.css" />
-    <script src="main.js"></script>
+    <script defer src="JS/title.js"></script>
 </head>
 <body>
-    <div id="titleBackground">
 
-        <div id="instructions">
+    <div id="titleBackground"> <!-- TITLE BACKGROUND -->
+
+        <div id="instructions"> <!-- INSTRUCTIONS -->
+
             <div class="row">
                 <img src="Images/player.gif">
-                <p>PLAYER CAN CONTROL THE AIRCRAFT WITH THE 'UP' AND 'DOWN' ARROW KEYS.</p>
+                <p>control the aircraft with the up, down, left, and right arrow keys</p>
             </div>
-            <div class="rowReverse">
-                <img src="">
-                <p></p>
-            </div>
-            <div class="row">
-                <img src="Images/bomb.gif">
-                <p></p>
-            </div>
-            <div class="rowReverse">
-                <img>
-                <p></p>
-            </div>
-            <div class="row">
-                <img>
-                <p></p>
-            </div>
-        </div>
 
-        <div id="opacity">
+            <div class="rowReverse">
+                <img src="Images/fuel.png" height="55" width="25">
+                <p>top priority goes to collecting fuel</p>
+            </div>
+
+            <div class="row">
+                <img src="Images/bomb.png" height="30" width="75">
+                <p>evade incoming missiles, the aircraft will explode on contact</p>
+            </div>
+
+            <div class="rowReverse">
+                <img src="Images/FuelBar.png">
+                <p>to win, fill the fuel bar before time runs out</p>
+            </div>
+
+            <div class="row">
+                <a href="Pages/gamePage.html"><button id="startBtn">play game</button></a>
+                <button id="mainMenuBtn">main menu</button>
+            </div>
+
+        </div> <!-- INSTRUCTIONS -->
+
+        <div id="opacity"> <!-- OPACITY -->
 
             <div id="titleContainer">
 
-            <h1>FUEL COLLECTOR</h1>
+            <h1>barnSTORM:REfuel</h1>
 
             <div id="btnDiv">
 
-                <button id="startBtn">play game</button>
-                <button id="InstructBtn">instructions</button>
+                <a href="Pages/gamePage.html"><button id="startBtn">play game</button></a>
+                <button id="instructBtn">instructions</button>
 
             </div>
 
             </div>
 
-        </div>
+        </div> <!-- OPACITY -->
 
-    </div>
+    </div> <!-- TITLE BACKGROUND -->
+
 </body>
 </html>
