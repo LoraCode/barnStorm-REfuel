@@ -292,12 +292,13 @@ function bombCollisionDetected() {
     // Another example
     if (bomb1Check === true || bomb2Check === true || bomb3Check === true) {
         playerDeath.style.display = 'block';
-        alert('you lose');
+        gameOver.style.zIndex = 1;
     }
 }
 
 // TIMER
-
+const win = document.querySelector('#winDiv');
+const gameOver = document.querySelector('#gameOverDiv');
 let secHolder = document.querySelector('#seconds');
 let secs = 60;
 
@@ -318,7 +319,7 @@ function countDownTimer() {
         fallingBomb3();
     }
     if (secs == 0) {
-        alert('Game Over');
+        gameOver.style.zIndex = 1;
     }
 
     secHolder.innerHTML = secs;
@@ -330,7 +331,7 @@ setInterval(countDownTimer, 1000);
 
 function checkForWin() {
     if (fuelAmount.style.width === 200 + 'px') {
-        alert('you win');
+        win.style.zIndex = 1;
     }
 }
 

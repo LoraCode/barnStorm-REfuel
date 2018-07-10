@@ -213,26 +213,17 @@ button:hover {
     display: none;
 }
 
-#gameCondition {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: -4;
-}
-
 #winDiv {
     height: 60%;
     width: 60%;
-    background-color: rgba(35, 35, 35, 0.8);
+    background-color: rgba(35, 35, 35, 0.6);
     border-radius: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
-    z-index: -3;
+    z-index: -1;
+    transform: translate(275px, 125px);
 }
 
 #winDiv h1 {
@@ -252,10 +243,31 @@ button:hover {
     justify-content: space-between;
 }
 
-/* #gameOverDiv{
+#gameOverDiv {
     height: 60%;
     width: 60%;
-    background-color: rgba(35, 35, 35, 1);
+    background-color: rgba(35, 35, 35, 0.6);
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
-    z-index: -5;
-} */
+    z-index: -1;
+    transform: translate(275px, 125px);
+}
+
+#gameOverDiv h1 {
+    font-family: Blox2;
+    font-size: 72pt;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#gameOverDivBtns {
+    height: 50px;
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+}
